@@ -1,0 +1,19 @@
+import numpy as np
+
+array = np.array([[[1,2,3,4],[5,6,7,8]],
+                  [[9,10,11,12],[13,14,15,16]]])
+
+# print(array.shape)
+# print(array.size)
+# print(array.ndim)
+# print(array[1,1,1])
+
+array1 = np.array([
+  [1,2,3,4],
+  [5,6,7,8],
+  [9,10,11,12],
+  [13,14,15,16]
+])
+
+# before first comma, its row and then column slicing
+print(array1[0:2,2:4])
