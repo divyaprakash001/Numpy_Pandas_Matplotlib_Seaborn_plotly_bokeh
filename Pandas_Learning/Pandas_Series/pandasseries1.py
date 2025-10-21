@@ -174,7 +174,7 @@ marks_series['sst'] = 100
 
 # slicing in editing series
 # print(kohli_run_series)
-kohli_run_series[2:4] = [100,100]
+# kohli_run_series[2:4] = [100,100]
 # print(kohli_run_series)
 
 # editing series using fancy indexing
@@ -300,6 +300,6 @@ temp = pd.Series([1,2,3,np.nan,5,6,np.nan,8,np.nan,10])
 # new_d[1] = 100
 # print(new_d)
 
-newwd = kohli_run_series.head().copy()
-kohli_run_series[1] = 100
-print(newwd)
+# newwd = kohli_run_series.head().copy()
+# kohli_run_series[1] = 100
+# print(newwd)

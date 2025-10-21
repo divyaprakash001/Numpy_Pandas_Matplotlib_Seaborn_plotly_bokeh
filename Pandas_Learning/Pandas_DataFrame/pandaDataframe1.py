@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 lists = [
   [100,80,10],
@@ -158,7 +159,191 @@ dataframed.set_index("name",inplace=True)
 # print(ipl['Margin'].isnull().sum())
 # ipl['Margin']=(ipl['Margin'].astype("int32"))  #if nan present, error
 
-ipl['Season'] = ipl['Season'].astype("category")
-ipl['Team1'] = ipl['Team1'].astype("category")
-ipl['Team2'] = ipl['Team2'].astype("category")
-ipl.info()
+# ipl['Season'] = ipl['Season'].astype("category")
+# ipl['Team1'] = ipl['Team1'].astype("category")
+# ipl['Team2'] = ipl['Team2'].astype("category")
+# ipl.info()
+
+
+# important methods of dataframe
+
+# value_counts (applicable on series and dataframe)
+
+a = pd.Series([1,1,1,2,2,3])
+# print(a.value_counts())
+
+d = pd.DataFrame([
+  [100,80,10],
+  [90,70,7],
+  [120,100,14],
+  [80,70,14],
+  [80,70,14],
+],columns=['First','seconbd','third'])
+
+# print(d)
+# print(d.value_counts())  will be more application on series
+
+# print(ipl)
+# find which player has won the post potm -> in finals and qualifiers
+# ipl.info()
+# print(ipl[~ipl['MatchNumber'].str.isdigit()]['Player_of_Match'].value_counts())
+# pd.set_option('display.max_columns', None)
+
+
+import matplotlib.pyplot as plt
+# toss decision plot
+tos  = (ipl['TossDecision'].value_counts()).plot(kind='pie')
+# tos.plot(kind='pie')
+# plt.show()
+
+# how many matches each team has played
+# print(ipl['Team1'].value_counts())
+# print(ipl['Team2'].value_counts())
+# print((ipl['Team1'].value_counts() + ipl['Team2'].value_counts()).sort_values(ascending=False))
+
+
+# sort_values(series and dataframe) -> ascending -> na_position -> inplace -> multiple cols
+# x = pd.Series([12,14,1,56,89])
+# print(x.sort_values(ascending=False,inplace=True))
+# print(x)
+
+
+# print(movies)
+# print(movies.sort_values('title_x'))
+
+students = pd.DataFrame(
+    {
+        'name':['nitish','ankit','rupesh',np.nan,'mrityunjay',np.nan,'rishabh',np.nan,'aditya',np.nan],
+        'college':['bit','iit','vit',np.nan,np.nan,'vlsi','ssit',np.nan,np.nan,'git'],
+        'branch':['eee','it','cse',np.nan,'me','ce','civ','cse','bio',np.nan],
+        'cgpa':[6.66,8.25,6.41,np.nan,5.6,9.0,7.4,10,7.4,np.nan],
+        'package':[4,5,6,np.nan,6,7,8,9,np.nan,np.nan]
+
+    }
+)
+
+# print(students)
+# inplace=True makes the change permanent
+# print(students.sort_values('name',na_position='first',ascending=False,inplace=True))
+# print(students.sort_values('name',na_position='last',ascending=True))
+# print(students.sort_values('name',ascending=True))
+# print(students.sort_values('package',ascending=False))
+# print(movies)
+# print(movies.sort_values(['year_of_release','title_x']))
+# print(movies.sort_values(['year_of_release','title_x'],ascending=[True,False]))
+
+
+# rank applicable on series only
+batsman = pd.read_csv('Pandas_Learning\\Pandas_DataFrame\\batsman.csv')
+# pd.set_option('display.max_rows', None)
+batsman['batsman_rank'] = batsman['batsman_run'].rank(ascending=False)
+# print(batsman.sort_values('batsman_rank'))
+
+# sort_index  application on series and dataframe
+
+marks = {
+    'maths':67,
+    'english':57,
+    'science':89,
+    'hindi':100
+}
+
+marks_series = pd.Series(marks)
+# print(marks_series.sort_index())
+# print(marks_series.sort_index(ascending=False))
+
+# print(movies.sort_index())
+# print(movies.sort_index(ascending=False))
+
+# set_index applicable on datafram - inplace
+# print(batsman)
+# print(batsman.set_index('batter'))
+batsman.set_index('batter',inplace=True)
+# print(batsman)
+
+# reset_index(series + dataframe) -> drop parameter
+# batsman.reset_index(inplace=True)
+# print(batsman)
+
+
+# how to replace existing index without loosing
+batsman.reset_index().set_index('batsman_rank',inplace=True)
+
+# print(batsman)
+
+# series to dataframe using reset_index
+# print(marks_series.reset_index())
+# print(type(marks_series.reset_index()))
+
+# rename --- function applicable on dataframe -> index
+
+movies.set_index('title_x',inplace=True)
+movies.rename(columns={'imdb_id':'imdb','poster_path':'link'},inplace=True)
+movies.rename(index={'Uri: The Surgical Strike':'Uri: The Divya Prakash','Battalion 609':'Divya Battalion'},inplace=True)
+# print(movies)
+
+# unique applicable on series
+temp = pd.Series([1,1,2,2,3,3,4,4,5,5,np.nan,np.nan])
+# print(temp)
+# print(temp.unique())
+# print(len(ipl['Season'].unique()))
+
+# nunique  applicable on (series + dataframe) -> does not count nan -> dropna parameter
+# print(ipl['Season'].nunique())
+# print((temp.nunique()))
+
+
+# # isnull  applicable on (series + dataframe)
+# print(students['name'][students['name'].isnull()])
+
+# # notnull(series + dataframe)
+# print(students['name'][students['name'].notnull()])
+
+
+# hasnans(series)
+# print(students['name'].hasnans)
+
+# print(students.isnull())
+# print(students.notnull())
+# print(students.hasnans())  #not applicable here
+
+
+# dropna(series + dataframe) -> how parameter -> works like or
+# print(students)
+# print(students['name'].dropna())
+# print(students.dropna())  #remove all rows where columns has nan
+# print(students.dropna(how='any')) #remove all rows if any nan found
+# print(students.dropna(how='all')) #remove  rows where all column values are missing or nan
+# print(students.dropna(subset=['name'])) #remove  rows where name column has nan or missing value
+# print(students.dropna(subset=['name','college'])) #remove  rows where name and college column has nan or missing value
+# (students.dropna(inplace=True))
+# print(students)
+
+# fillna(series + dataframe)
+print(students['name'].fillna('unknown'))
+# print(students['name'].fillna('unknown',inplace=True))
+
+print(students['package'].fillna(students['package'].mean()))
+# print(students['package'].fillna(students['package'].mean(),inplace=True))
+print(students)
+
+# print(students['name'].fillna(method='bfill'))
+print(students.ffill())
+print(students.bfill())
+
+
+# drop_duplicates (series + dataframe) -> works like and -> duplicated()
+
+temp = pd.Series([1,1,1,2,3,3,4,4])
+print(temp.drop_duplicates())
+
+marks = pd.DataFrame([
+  [100,80,10],
+  [90,70,7],
+  [120,100,14],
+  [80,70,14],
+  [80,70,14],
+])
+print(marks.duplicated().sum())
+print(marks.drop_duplicates(keep='first'))
+print(marks.drop_duplicates(keep='last'))
