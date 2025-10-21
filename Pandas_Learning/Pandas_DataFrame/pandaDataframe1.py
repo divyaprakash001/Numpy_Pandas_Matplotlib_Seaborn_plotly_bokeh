@@ -90,7 +90,7 @@ dataframed.rename(columns={"marks":"percent","package":"lpa"},inplace=True)
 # print(dataframed)
 
 dataframed.set_index("name",inplace=True)
-print(movies.iloc[0])
+# print(movies.iloc[0])
 # print(movies.iloc[0:5])
 # print(movies.iloc[5:15:2])
 
@@ -106,3 +106,59 @@ print(movies.iloc[0])
 # print(dataframed.iloc[[0,3]])
 
 
+# selecting both rows and cols
+# print(movies.iloc[0:2,0:3])
+# print(movies.loc[0:2,'title_x':'poster_path'])
+
+# filtering dataframe
+
+# print(movies[movies['title_x']=='Uri: The Surgical Strike']['release_date'])
+# print(ipl[ipl['MatchNumber']=='Final'][['Season','WinningTeam']])
+
+# how many super overs finishes have occured
+# print(ipl[ipl['SuperOver']=='Y'].shape[0])
+
+# print(ipl[(ipl['City'] == 'Kolkata') & (ipl['WinningTeam'] == 'Chennai Super Kings')].shape[0])
+
+# toss winner is match winner in percentage
+# print((ipl[ipl['TossWinner'] == ipl['WinningTeam']].shape[0]/ipl.shape[0])*100)
+
+
+# movies with rating higher than 8 and votes>10000
+# print(movies[(movies['imdb_rating'] > 8.5) & (movies['imdb_votes'] > 10000)].shape[0])
+
+
+# Action movies with rating higher than 7.5
+# mask1 = movies['genres'].str.split('|').apply(lambda x:'Action' in x)
+# print(movies[(movies['genres'].str.contains('Action') & (movies['imdb_rating']>7.5))])
+# mask1 = movies['genres'].str.contains('Action')
+# mask2 = movies['imdb_rating']>7.5
+
+# print(movies[mask1 & mask2])
+
+
+# how to add new cols
+# movies['Country'] = 'India'
+# print(movies)
+
+
+# from existing ones
+# replace the missing values rows
+# movies.dropna(inplace=True)
+# print(movies['actors'].isnull().sum())
+# movies['lead_actor'] = (movies['actors'].str.split('|').apply(lambda x : x[0]))
+
+# print(movies)
+
+# important dataframe function
+
+# astype function
+# print(ipl.info())
+# ipl['ID']=(ipl['ID'].astype("int32"))
+# print(ipl['Margin'].isnull().sum())
+# ipl['Margin']=(ipl['Margin'].astype("int32"))  #if nan present, error
+
+ipl['Season'] = ipl['Season'].astype("category")
+ipl['Team1'] = ipl['Team1'].astype("category")
+ipl['Team2'] = ipl['Team2'].astype("category")
+ipl.info()

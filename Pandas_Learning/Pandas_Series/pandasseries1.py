@@ -52,7 +52,7 @@ marks_series = pd.Series(marks,name="Divya ka marks")
 
 
 # Series using read_csv ----------
-subs = pd.read_csv("Pandas_Series\\subs.csv")
+subs = pd.read_csv("Pandas_Learning\\Pandas_Series\\subs.csv")
 subs_series = subs.squeeze()
 # print(type(subs)) #DataFrame
 # print("------------------")
@@ -61,7 +61,7 @@ subs_series = subs.squeeze()
 
 
 # kohli_runs = pd.read_csv("Pandas_Series\\kohli_ipl.csv",index_col="runs")
-kohli_runs = pd.read_csv("Pandas_Series\\kohli_ipl.csv",index_col="match_no")
+kohli_runs = pd.read_csv("Pandas_Learning\\Pandas_Series\\kohli_ipl.csv",index_col="match_no")
 kohli_run_series = kohli_runs.squeeze()
 # print(kohli_runs)
 # print(type(kohli_runs))
@@ -70,7 +70,7 @@ kohli_run_series = kohli_runs.squeeze()
 # print(type(kohli_runs.squeeze())) 
 
 
-movies = pd.read_csv("Pandas_Series\\bollywood.csv",index_col="movie")
+movies = pd.read_csv("Pandas_Learning\\Pandas_Series\\bollywood.csv",index_col="movie")
 movie_series = ((movies.squeeze()))
 # print(type(movie_series))
 # print(movies)
@@ -231,8 +231,75 @@ kohli_run_series[2:4] = [100,100]
 # num_movies = movie_series.value_counts()
 # print(num_movies)
 # print(num_movies[num_movies>20])
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 # kohli_run_series.plot(kind='pie')
 # subs_series.plot(kind='pie')
-movie_series.value_counts().head(50).plot(kind='bar')
-plt.show()
+# movie_series.value_counts().head(50).plot(kind='bar')
+# plt.show()
+# 
+
+
+# important function 25 minutes
+
+# astype
+
+# print(kohli_run_series)
+# import sys
+
+# print(sys.getsizeof(kohli_run_series))
+
+# kohli_run_series.astype('int16')
+# print(sys.getsizeof(kohli_run_series.astype('int16')))
+
+# between
+# print(kohli_run_series[kohli_run_series.between(51,99)].size)
+
+# clip
+# print(subs_series.clip(100,200))
+
+# drop_duplicates
+# print(subs_series.duplicated().size)
+# print(subs_series.drop_duplicates())
+# print(subs_series.drop_duplicates(keep='last'))
+
+# print(movie_series.size)
+# print(movie_series.drop_duplicates().size)
+
+temp = pd.Series([1,1,2,2,3,3,4,4])
+# print(temp)
+# print(temp.drop_duplicates(keep='first'))
+# print(temp.drop_duplicates(keep='last'))
+# print(temp.drop_duplicates().sum())
+# print(kohli_run_series.drop_duplicates().sum())
+
+# to find duplicated values and num of duplicated values
+# print(temp.duplicated().sum())
+# print(kohli_run_series.duplicated().sum())
+
+temp = pd.Series([1,2,3,np.nan,5,6,np.nan,8,np.nan,10])
+# print(temp.size)
+# print(temp.count())
+# print(temp.isnull().sum())
+# print(temp.isna().sum())
+# print(temp.dropna())
+# print(temp.mean())
+# print(temp.fillna(temp.mean()))
+
+# print(kohli_run_series[(kohli_run_series == 49) | (kohli_run_series == 99)])
+# print(kohli_run_series[kohli_run_series.isin([49,99])])
+
+# apply ---------------
+# print(movie_series.apply(lambda x : x.split()[0].upper()))
+# avg = subs_series.mean()
+# print(subs_series.apply(lambda x : 'Good Day' if x > subs_series.mean() else 'Bad Day'))
+
+# copy -------------------------
+
+# new_d = (kohli_run_series.head())
+# print(new_d)
+# new_d[1] = 100
+# print(new_d)
+
+newwd = kohli_run_series.head().copy()
+kohli_run_series[1] = 100
+print(newwd)
