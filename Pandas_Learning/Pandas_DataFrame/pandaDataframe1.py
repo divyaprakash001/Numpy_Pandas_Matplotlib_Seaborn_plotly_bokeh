@@ -1,24 +1,24 @@
 import pandas as pd
 import numpy as np
 
-lists = [
-  [100,80,10],
-  [90,70,7],
-  [120,100,14],
-  [80,50,2],
-  [80,50,2],
-]
-dataframe = pd.DataFrame(lists,columns=["IQ","Marks","Package"])
+# lists = [
+#   [100,80,10],
+#   [90,70,7],
+#   [120,100,14],
+#   [80,50,2],
+#   [80,50,2],
+# ]
+# dataframe = pd.DataFrame(lists,columns=["IQ","Marks","Package"])
 # print(dataframe)
 
-dics = {
-  "name":["nitish","ankit","rupesh","risabh","amit","ankita"],
-  "iq":[100,90,120,80,0,0],
-  "marks":[80,70,100,50,0,0],
-  "package":[10,7,14,2,0,0],
-}
+# dics = {
+#   "name":["nitish","ankit","rupesh","risabh","amit","ankita"],
+#   "iq":[100,90,120,80,0,0],
+#   "marks":[80,70,100,50,0,0],
+#   "package":[10,7,14,2,0,0],
+# }
 
-dataframed = pd.DataFrame(dics)
+# dataframed = pd.DataFrame(dics)
 # print(dataframed)
 
 movies= pd.read_csv("Pandas_Learning\\Pandas_DataFrame\\movies.csv")
@@ -48,15 +48,15 @@ ipl= pd.read_csv("Pandas_Learning\\Pandas_DataFrame\\ipl-matches.csv")
 # print(movies.isnull().sum())
 # print(ipl.isnull().sum())
 
-youchart= pd.read_csv("Pandas_Learning\\Pandas_DataFrame\\chart_data.csv")
-youchart= pd.read_csv("Pandas_Learning\\Pandas_DataFrame\\totals.csv")
+# youchart= pd.read_csv("Pandas_Learning\\Pandas_DataFrame\\chart_data.csv")
+# youchart= pd.read_csv("Pandas_Learning\\Pandas_DataFrame\\totals.csv")
 # print(youchart.info())
 # print(youchart.isnull().sum())
 # print(dataframe.duplicated().sum())
 
 # print(dataframed)
 # use inplace=true to change permanently
-dataframed.rename(columns={"marks":"percent","package":"lpa"},inplace=True)
+# dataframed.rename(columns={"marks":"percent","package":"lpa"},inplace=True)
 # print(dataframed)
 
 
@@ -90,7 +90,7 @@ dataframed.rename(columns={"marks":"percent","package":"lpa"},inplace=True)
 
 # print(dataframed)
 
-dataframed.set_index("name",inplace=True)
+# dataframed.set_index("name",inplace=True)
 # print(movies.iloc[0])
 # print(movies.iloc[0:5])
 # print(movies.iloc[5:15:2])
@@ -167,18 +167,18 @@ dataframed.set_index("name",inplace=True)
 
 # important methods of dataframe
 
-# value_counts (applicable on series and dataframe)
+# # value_counts (applicable on series and dataframe)
 
-a = pd.Series([1,1,1,2,2,3])
-# print(a.value_counts())
+# # a = pd.Series([1,1,1,2,2,3])
+# # print(a.value_counts())
 
-d = pd.DataFrame([
-  [100,80,10],
-  [90,70,7],
-  [120,100,14],
-  [80,70,14],
-  [80,70,14],
-],columns=['First','seconbd','third'])
+# d = pd.DataFrame([
+#   [100,80,10],
+#   [90,70,7],
+#   [120,100,14],
+#   [80,70,14],
+#   [80,70,14],
+# ],columns=['First','seconbd','third'])
 
 # print(d)
 # print(d.value_counts())  will be more application on series
@@ -192,7 +192,7 @@ d = pd.DataFrame([
 
 import matplotlib.pyplot as plt
 # toss decision plot
-tos  = (ipl['TossDecision'].value_counts()).plot(kind='pie')
+# tos  = (ipl['TossDecision'].value_counts()).plot(kind='pie')
 # tos.plot(kind='pie')
 # plt.show()
 
@@ -258,7 +258,7 @@ marks_series = pd.Series(marks)
 # set_index applicable on datafram - inplace
 # print(batsman)
 # print(batsman.set_index('batter'))
-batsman.set_index('batter',inplace=True)
+# batsman.set_index('batter',inplace=True)
 # print(batsman)
 
 # reset_index(series + dataframe) -> drop parameter
@@ -267,7 +267,7 @@ batsman.set_index('batter',inplace=True)
 
 
 # how to replace existing index without loosing
-batsman.reset_index().set_index('batsman_rank',inplace=True)
+# batsman.reset_index().set_index('batsman_rank',inplace=True)
 
 # print(batsman)
 
@@ -277,13 +277,13 @@ batsman.reset_index().set_index('batsman_rank',inplace=True)
 
 # rename --- function applicable on dataframe -> index
 
-movies.set_index('title_x',inplace=True)
-movies.rename(columns={'imdb_id':'imdb','poster_path':'link'},inplace=True)
-movies.rename(index={'Uri: The Surgical Strike':'Uri: The Divya Prakash','Battalion 609':'Divya Battalion'},inplace=True)
-# print(movies)
+# movies.set_index('title_x',inplace=True)
+# movies.rename(columns={'imdb_id':'imdb','poster_path':'link'},inplace=True)
+# movies.rename(index={'Uri: The Surgical Strike':'Uri: The Divya Prakash','Battalion 609':'Divya Battalion'},inplace=True)
+# # print(movies)
 
 # unique applicable on series
-temp = pd.Series([1,1,2,2,3,3,4,4,5,5,np.nan,np.nan])
+# temp = pd.Series([1,1,2,2,3,3,4,4,5,5,np.nan,np.nan])
 # print(temp)
 # print(temp.unique())
 # print(len(ipl['Season'].unique()))
@@ -320,22 +320,22 @@ temp = pd.Series([1,1,2,2,3,3,4,4,5,5,np.nan,np.nan])
 # print(students)
 
 # fillna(series + dataframe)
-print(students['name'].fillna('unknown'))
+# print(students['name'].fillna('unknown'))
 # print(students['name'].fillna('unknown',inplace=True))
 
-print(students['package'].fillna(students['package'].mean()))
+# print(students['package'].fillna(students['package'].mean()))
 # print(students['package'].fillna(students['package'].mean(),inplace=True))
-print(students)
+# print(students)
 
 # print(students['name'].fillna(method='bfill'))
-print(students.ffill())
-print(students.bfill())
+# print(students.ffill())
+# print(students.bfill())
 
 
 # drop_duplicates (series + dataframe) -> works like and -> duplicated()
 
-temp = pd.Series([1,1,1,2,3,3,4,4])
-print(temp.drop_duplicates())
+# temp = pd.Series([1,1,1,2,3,3,4,4])
+# print(temp.drop_duplicates())
 
 marks = pd.DataFrame([
   [100,80,10],
@@ -344,6 +344,57 @@ marks = pd.DataFrame([
   [80,70,14],
   [80,70,14],
 ])
-print(marks.duplicated().sum())
-print(marks.drop_duplicates(keep='first'))
-print(marks.drop_duplicates(keep='last'))
+# print(marks.duplicated().sum())
+# print(marks.drop_duplicates(keep='first'))
+# print(marks.drop_duplicates(keep='last'))
+
+# find the last match played by virat kohli in Delhi
+ipl['all_players']=(ipl['Team1Players'] + ipl['Team2Players'])
+# print(ipl['all_players'].unique())
+
+# def did_kohli_play(players_list):
+#   return 'V Kohli' in players_list
+
+# ipl['did_kohli_play']  = ipl['all_players'].apply(did_kohli_play)
+# # we can do also like this instead of creating function, we use lambda function
+# ipl['did_kohli_play']  = ipl['all_players'].apply(lambda x : True if 'V Kohli' in x else False)
+# # using subsets so that we can drop_duplicates only on based on city and did_kohli_play
+# print(ipl[(ipl['did_kohli_play']==True) & (ipl['City'] == 'Delhi')].drop_duplicates(subset=['City','did_kohli_play'],keep='first'))
+
+
+# drop series and dataframe ------------------
+# temp = pd.Series([10,2,3,16,35,98,74,19])
+# print(temp.drop(index=[0,6]))
+
+# print(students)
+# # print(students.drop(columns=['branch','cgpa']))
+# print(students.drop(index=[0,8]))
+# print(students.set_index('name').drop(index=['nitish','aditya']))
+# print(students.drop(index=[0,8]))
+
+
+# apply(series + dataframe)
+temp = pd.Series([10,20,30,40,50])
+
+# def sigmoid(value):
+#   return 1/1+np.exp(-value)
+
+# print(temp.apply(lambda x : x*2))
+# print(temp.apply(lambda value : 1/1+np.exp(-value)))
+# print(temp.apply(sigmoid))
+
+# on dataframe
+points_df = pd.DataFrame(
+    {
+        '1st point':[(3,4),(-6,5),(0,0),(-10,1),(4,5)],
+        '2nd point':[(-3,4),(0,0),(2,2),(10,10),(1,1)]
+    }
+)
+
+def euclidian(row):
+  pt_a = row['1st point']
+  pt_b = row['2nd point']
+  return ((pt_a[0] - pt_b[1]) **2 + (pt_a[1] - pt_b[0])**2 )** .5
+
+points_df['distance']=(points_df.apply(euclidian,axis=1))
+print(points_df)
